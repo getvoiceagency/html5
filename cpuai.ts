@@ -2,9 +2,9 @@
 //Base Binary Value 50/50
 let BinBase = 50
 //Set Difficulty Modifier
-let easy = 45
-let medium = 35
-let hard =25
+let easy = 10
+let medium = 20
+let hard =40
 let outPut = "over"
 
 
@@ -71,16 +71,16 @@ else if
 }
 
 
-//Console and do Next
+//Console 
 console.log(( {resultPower} ) );
 console.log(( {resultTwist} ) );
 console.log(( {beatMe} ) );
 }
+
+//Else do a different check
 else if (diceRoll > beatMe)
 
 {
-    
-    
 // Find which stat is greatest and store it
 let resultPower = Math.max(star,heart,defence)
 let resultTwist = Math.max(blue,orange,green)
@@ -125,7 +125,7 @@ else if
 }
 
 
-//Console and do Next
+//Console
 console.log(( {resultPower} ) );
 console.log(( {resultTwist} ) );
 console.log(( {beatMe} ) );

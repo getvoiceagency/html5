@@ -2,9 +2,9 @@
 //Base Binary Value 50/50
 var BinBase = 50;
 //Set Difficulty Modifier
-var easy = 45;
-var medium = 35;
-var hard = 25;
+var easy = 10;
+var medium = 20;
+var hard = 40;
 var outPut = "over";
 // Set Card Variables
 var star = 1;
@@ -48,11 +48,12 @@ if (diceRoll < beatMe) {
         var emTwist = resultTwist;
         console.log(({ emTwist: emTwist }));
     }
-    //Console and do Next
+    //Console 
     console.log(({ resultPower: resultPower }));
     console.log(({ resultTwist: resultTwist }));
     console.log(({ beatMe: beatMe }));
 }
+//Else do a different check
 else if (diceRoll > beatMe) {
     // Find which stat is greatest and store it
     var resultPower = Math.max(star, heart, defence);
@@ -83,7 +84,7 @@ else if (diceRoll > beatMe) {
         var emTwist = resultTwist;
         console.log(({ emTwist: emTwist }));
     }
-    //Console and do Next
+    //Console
     console.log(({ resultPower: resultPower }));
     console.log(({ resultTwist: resultTwist }));
     console.log(({ beatMe: beatMe }));
