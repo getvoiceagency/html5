@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
+        <script src="pixi-particles.js"></script>
+    </head>
+     
+    <body>
+   
+<script>
+/*global PIXI*/
+var renderer = PIXI.autoDetectRenderer(1280, 800,{});
+document.body.appendChild(renderer.view);
+
+// // Load them google fonts before starting...!
+window.WebFontConfig = {
+    google: {
+        families: ['Snippet', 'Arvo:700italic', 'Podkova:700']
+    },
+
+    
+};
+
+// include the web-font loader script
+/* jshint ignore:start */
+(function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' === document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+})();
+/* jshint ignore:end */
+    // create some white text
+    var score1 = new PIXI.Text('Player 10', { font: '35px Snippet', fill: 'white', align: 'center' });
+    var score2 = new PIXI.Text('CPU 10', { font: '35px Snippet', fill: 'white', align: 'center' });
+
+    
+// create the root of the scene graph
+var stage = new PIXI.Container();
+
+var container = new PIXI.Container();
+
+
+// set container
+//Set background
+stage.addChild(container);
+var landscapeTexture = PIXI.Texture.fromImage('spot-background.png');
+
+var background = new PIXI.Sprite(landscapeTexture);
+
+//Background to stage
+stage.addChild(background);
+
+// Background positions
+background.anchor.x = 0;
+background.anchor.y = 0;
+background.position.x = 0;
+background.position.y = 0;
+
+
+
+{
+// get card 1
+ {
+        var card1 = PIXI.Sprite.fromImage('card1.png');
+        
+     
+        stage.addChild(card1);
+    };
+    
+    // get card 2
+    {
+        var card2 = PIXI.Sprite.fromImage('card2.png');
+        
+     
+        stage.addChild(card2);
+    };
+    // get score orange
+    {
+        var scoreOrange = PIXI.Sprite.fromImage('score-orange.png');
+        
+     
+        container.addChild(scoreOrange);
+    };
+    // get score red
+    {
+        var scoreRed = PIXI.Sprite.fromImage('score-red.png');
+        
+     
+        container.addChild(scoreRed);
+    };
+     {
+        var vs = PIXI.Sprite.fromImage('VS.png');
+        
+     
+        container.addChild(vs);
+    };
+};
+
+
+
+container.x = 34;
+container.y = 10;
+// Move container to the center
+// center the sprite anchor point
+
+//card 1
+
+card1.anchor.x = 0;
+card1.anchor.y = 0;
+
+// move the sprite to the center of the canvas
+card1.position.x = 150;
+card1.position.y = 200;
+
+// Center bunny sprite in local container coordinates
+ 
+card1.scale.x =0.5; 
+card1.scale.y =0.5;
+
+// card 2
+
+card2.anchor.x = 0;
+card2.anchor.y = 0;
+
+// move the sprite to the center of the canvas
+card2.position.x = 740;
+card2.position.y = 200;
+
+// Center bunny sprite in local container coordinates
+ 
+card2.scale.x =0.5; 
+card2.scale.y =0.5;
+
+// set score positions
+score2.position.set(100);
+score1.position.set(1);
+
+// render text to stage
+
+stage.addChild(scoreOrange);
+stage.addChild(scoreRed);
+stage.addChild(score1);
+stage.addChild(score2);
+stage.addChild(vs);
+
+
+//set score position
+score1.position.x = 115;
+score1.position.y = 24;
+
+score2.position.x = 1028;
+score2.position.y = 24;
+
+//set score position
+scoreOrange.position.x = 100;
+scoreOrange.position.y = 10;
+
+scoreRed.position.x = 1000;
+scoreRed.position.y = 10;
+
+//Set VS position
+vs.position.x = 570;
+vs.position.y = 420;
+
+
+// start animating
+animate();
+
+function animate() {
+
+
+
+    requestAnimationFrame(animate);
+
+    // render the root container
+    renderer.render(stage);
+    
+}
+</script>
+
+
+
+    </body>
+</html>
