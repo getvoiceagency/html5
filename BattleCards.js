@@ -7,6 +7,7 @@ var plBlue = 1;
 var plOrange = 3;
 var plGreen = 5;
 var plHp = 10;
+var plTwistColour = "green";
 //CPU card stats
 var emStar = 8;
 var emHeart = 6;
@@ -15,6 +16,7 @@ var emBlue = 3;
 var emOrange = 4;
 var emGreen = 6;
 var cpuHp = 10;
+var emTwistColour = "green";
 var plPower = 1;
 var plTwist = 1;
 var emPower = 1;
@@ -67,6 +69,20 @@ else if (emDefence = emResultPower) {
 if (emBlue = emResultTwist) {
     emTwist = emResultTwist;
     console.log(({ emTwist: emTwist }));
+}
+else if (plOrange = emResultTwist) {
+    emTwist = emResultTwist;
+    console.log(({ emTwist: emTwist }));
+}
+else if (emGreen = emResultTwist) {
+    emTwist = emResultTwist;
+    console.log(({ emTwist: emTwist }));
+}
+//check for colours and add bonus , stuck here
+if (plTwistColour = "green", emTwistColour = "green") {
+    plBonus = 4;
+    emBonus = 1;
+    console.log(({ emBonus: emBonus }));
 }
 else if (plOrange = emResultTwist) {
     emTwist = emResultTwist;

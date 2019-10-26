@@ -6,6 +6,7 @@ let plBlue = 1
 let plOrange = 3
 let plGreen = 5
 let plHp = 10
+let plTwistColour = "green"
 
 //CPU card stats
 let emStar = 8
@@ -15,6 +16,7 @@ let emBlue = 3
 let emOrange = 4
 let emGreen = 6
 let cpuHp = 10
+let emTwistColour = "green"
 
 let plPower = 1
 let plTwist = 1
@@ -106,9 +108,35 @@ else if
     emTwist = emResultTwist
     console.log(( {emTwist} ) );
 }
+
+//check for colours and add bonus , stuck here
+if (plTwistColour = "green", emTwistColour = "green")
+{   plBonus = 4
+    emBonus = 1
+   console.log(( {emBonus} ) );
+}
+
+else if
+(plOrange = emResultTwist) {
+    emTwist = emResultTwist
+   console.log(( {emTwist} ) );
+}    
+
+else if 
+(emGreen = emResultTwist) {
+    emTwist = emResultTwist
+    console.log(( {emTwist} ) );
+}
+
+
+
+
 // calculate Attack Power
 let plAttack = plPower + plTwist + plBonus
 let emAttack = emPower + emTwist + emBonus
+
+
+
 
 console.log(( {plPower} ) );
 console.log(( {plTwist} ) );
