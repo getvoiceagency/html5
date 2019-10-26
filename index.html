@@ -3,12 +3,14 @@
     <head>
         <title> </title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
-        <script src="pixi-particles.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/plugins/PixiPlugin.min.js"></script>
     </head>
      
     <body>
    
 <script>
+
 /*global PIXI*/
 var renderer = PIXI.autoDetectRenderer(1280, 800,{});
 document.body.appendChild(renderer.view);
@@ -43,7 +45,6 @@ window.WebFontConfig = {
 var stage = new PIXI.Container();
 
 var container = new PIXI.Container();
-
 
 // set container
 //Set background
@@ -114,13 +115,14 @@ card1.anchor.x = 0;
 card1.anchor.y = 0;
 
 // move the sprite to the center of the canvas
-card1.position.x = 150;
+card1.position.x = -1050;
 card1.position.y = 200;
+card1.alpha = 0;
 
 // Center bunny sprite in local container coordinates
  
-card1.scale.x =0.5; 
-card1.scale.y =0.5;
+card1.scale.x =1.0; 
+card1.scale.y =1.0;
 
 // card 2
 
@@ -128,13 +130,14 @@ card2.anchor.x = 0;
 card2.anchor.y = 0;
 
 // move the sprite to the center of the canvas
-card2.position.x = 740;
+card2.position.x = 1450;
 card2.position.y = 200;
+card2.alpha = 0;
 
 // Center bunny sprite in local container coordinates
  
-card2.scale.x =0.5; 
-card2.scale.y =0.5;
+card2.scale.x =1.0; 
+card2.scale.y =1.0;
 
 // set score positions
 score2.position.set(100);
@@ -166,6 +169,28 @@ scoreRed.position.y = 10;
 //Set VS position
 vs.position.x = 570;
 vs.position.y = 420;
+vs.scale.x =0.07; 
+vs.scale.y =0.07; 
+vs.alpha = 0;
+
+
+
+
+/*global TweenMax*/
+//TweenMax.to(card1, 1, {pixi:{scaleX:5, scaleY:4.5,}});
+//TweenMax.to(card1, 1, {pixi:{scaleX:2, scaleY:1.5,}});
+/*global TimelineMax*/
+/*global Sine*/
+ var tl = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: true })
+    .to(card1, 1, { pixi: { x: 125, y: 225, alpha: 1,}, ease: Sine.easeInOut }, 0.1 )
+    .to(card1, 2, { pixi: { x: 125, y: 200, scale: 0.5, opacity: 0,}, ease: Sine.easeInOut }, 0.1)
+
+var t2 = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: true })
+    .to(card2, 1, { pixi: { x: 125, y: 225, alpha: 1, }, ease: Sine.easeInOut }, 0.1)
+    .to(card2, 2, { pixi: { x: 775, y: 200, scale: 0.5 }, ease: Sine.easeInOut }, 0.1)
+    
+var t3 = new TimelineMax({ repeat: 0, delay: 1.5, yoyo: true })
+    .to(vs, 3, { pixi: {alpha: 1, }}, 0.1)
 
 
 // start animating
@@ -179,10 +204,9 @@ function animate() {
 
     // render the root container
     renderer.render(stage);
-    
+
 }
 </script>
-
 
 
     </body>
