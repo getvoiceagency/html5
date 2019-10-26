@@ -12,12 +12,12 @@
 <script>
 
 /*global PIXI*/
-var renderer = PIXI.autoDetectRenderer(1280, 800,{});
-document.body.appendChild(renderer.view);
+        var renderer = PIXI.autoDetectRenderer(1280, 800,{});
+    document.body.appendChild(renderer.view);
 
-// // Load them google fonts before starting...!
-window.WebFontConfig = {
-    google: {
+ // // Load them google fonts before starting...!
+    window.WebFontConfig = {
+        google: {
         families: ['Snippet', 'Arvo:700italic', 'Podkova:700']
     },
 
@@ -26,15 +26,16 @@ window.WebFontConfig = {
 
 // include the web-font loader script
 /* jshint ignore:start */
-(function() {
-    var wf = document.createElement('script');
-    wf.src = ('https:' === document.location.protocol ? 'https' : 'http') +
+       (function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' === document.location.protocol ? 'https' : 'http') +
         '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-    wf.type = 'text/javascript';
-    wf.async = 'true';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(wf, s);
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
 })();
+
 /* jshint ignore:end */
     // create some white text
     var score1 = new PIXI.Text('Player 10', { font: '35px Snippet', fill: 'white', align: 'center' });
@@ -42,25 +43,25 @@ window.WebFontConfig = {
 
     
 // create the root of the scene graph
-var stage = new PIXI.Container();
+    var stage = new PIXI.Container();
 
-var container = new PIXI.Container();
+    var container = new PIXI.Container();
 
 // set container
 //Set background
-stage.addChild(container);
-var landscapeTexture = PIXI.Texture.fromImage('spot-background.png');
+    stage.addChild(container);
+    var landscapeTexture = PIXI.Texture.fromImage('spot-background.png');
 
-var background = new PIXI.Sprite(landscapeTexture);
+    var background = new PIXI.Sprite(landscapeTexture);
 
 //Background to stage
-stage.addChild(background);
+    stage.addChild(background);
 
 // Background positions
-background.anchor.x = 0;
-background.anchor.y = 0;
-background.position.x = 0;
-background.position.y = 0;
+    background.anchor.x = 0;
+    background.anchor.y = 0;
+    background.position.x = 0;
+    background.position.y = 0;
 
 
 
@@ -104,90 +105,86 @@ background.position.y = 0;
 
 
 
-container.x = 34;
-container.y = 10;
+    container.x = 34;
+    container.y = 10;
 // Move container to the center
 // center the sprite anchor point
 
 //card 1
 
-card1.anchor.x = 0;
-card1.anchor.y = 0;
+    card1.anchor.x = 0;
+    card1.anchor.y = 0;
 
 // move the sprite to the center of the canvas
-card1.position.x = -1050;
-card1.position.y = 200;
-card1.alpha = 0;
+    card1.position.x = -1050;
+    card1.position.y = 200;
+    card1.alpha = 0;
 
 // Center bunny sprite in local container coordinates
  
-card1.scale.x =1.0; 
-card1.scale.y =1.0;
+    card1.scale.x =1.0; 
+    card1.scale.y =1.0;
 
 // card 2
 
-card2.anchor.x = 0;
-card2.anchor.y = 0;
+    card2.anchor.x = 0;
+    card2.anchor.y = 0;
 
 // move the sprite to the center of the canvas
-card2.position.x = 1450;
-card2.position.y = 200;
-card2.alpha = 0;
+    card2.position.x = 1450;
+    card2.position.y = 200;
+    card2.alpha = 0;
 
 // Center bunny sprite in local container coordinates
  
-card2.scale.x =1.0; 
-card2.scale.y =1.0;
+    card2.scale.x =1.0; 
+    card2.scale.y =1.0;
 
 // set score positions
-score2.position.set(100);
-score1.position.set(1);
+    score2.position.set(100);
+    score1.position.set(1);
 
 // render text to stage
 
-stage.addChild(scoreOrange);
-stage.addChild(scoreRed);
-stage.addChild(score1);
-stage.addChild(score2);
-stage.addChild(vs);
+    stage.addChild(scoreOrange);
+    stage.addChild(scoreRed);
+    stage.addChild(score1);
+    stage.addChild(score2);
+    stage.addChild(vs);
 
 
 //set score position
-score1.position.x = 115;
-score1.position.y = 24;
+    score1.position.x = 115;
+    score1.position.y = 24;
 
-score2.position.x = 1028;
-score2.position.y = 24;
+    score2.position.x = 1028;
+    score2.position.y = 24;
 
 //set score position
-scoreOrange.position.x = 100;
-scoreOrange.position.y = 10;
+    scoreOrange.position.x = 100;
+    scoreOrange.position.y = 10;
 
-scoreRed.position.x = 1000;
-scoreRed.position.y = 10;
-
+    scoreRed.position.x = 1000;
+    scoreRed.position.y = 10;
+    
 //Set VS position
-vs.position.x = 570;
-vs.position.y = 420;
-vs.scale.x =0.07; 
-vs.scale.y =0.07; 
-vs.alpha = 0;
+    vs.position.x = 570;
+    vs.position.y = 420;
+    vs.scale.x =0.07; 
+    vs.scale.y =0.07; 
+    vs.alpha = 0;
 
-
-
-
-/*global TweenMax*/
-//TweenMax.to(card1, 1, {pixi:{scaleX:5, scaleY:4.5,}});
-//TweenMax.to(card1, 1, {pixi:{scaleX:2, scaleY:1.5,}});
 /*global TimelineMax*/
 /*global Sine*/
  var tl = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: true })
-    .to(card1, 1, { pixi: { x: 125, y: 225, alpha: 1,}, ease: Sine.easeInOut }, 0.1 )
-    .to(card1, 2, { pixi: { x: 125, y: 200, scale: 0.5, opacity: 0,}, ease: Sine.easeInOut }, 0.1)
+    .to(card1, 1, { pixi: { x: 125, y: 225,}, ease: Sine.easeInOut }, 0.1 )
+    .to(card1, 2, { pixi: {alpha: 1, delay:7.5,}, ease: Sine.easeInOut }, 0.1)
+    .to(card1, 3, { pixi: { x: 125, y: 200, scale: 0.5,}, ease: Sine.easeInOut }, 0.1)
 
 var t2 = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: true })
-    .to(card2, 1, { pixi: { x: 125, y: 225, alpha: 1, }, ease: Sine.easeInOut }, 0.1)
-    .to(card2, 2, { pixi: { x: 775, y: 200, scale: 0.5 }, ease: Sine.easeInOut }, 0.1)
+    .to(card2, 1, { pixi: { x: 125, y: 225, }, ease: Sine.easeInOut }, 0.1)
+    .to(card2, 2, { pixi: {alpha: 1, delay:7.5,}, ease: Sine.easeInOut }, 0.1)
+    .to(card2, 3, { pixi: { x: 775, y: 200, scale: 0.5 }, ease: Sine.easeInOut }, 0.1)
     
 var t3 = new TimelineMax({ repeat: 0, delay: 1.5, yoyo: true })
     .to(vs, 3, { pixi: {alpha: 1, }}, 0.1)
