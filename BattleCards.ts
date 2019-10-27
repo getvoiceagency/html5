@@ -25,6 +25,9 @@ let emTwist = 1
 let plBonus = 1
 let emBonus = 1
 
+//Damage Mechanics
+let dmgModel = 0
+
 let plResultPower = Math.max(plStar,plHeart,plDefence)
 let plResultTwist = Math.max(plBlue,plOrange,plGreen)
 
@@ -109,7 +112,7 @@ else if
     console.log(( {emTwist} ) );
 }
 
-//check for colours and add bonus , stuck here
+//check for colours and add bonus to 
 if (plTwistColour = "green", emTwistColour = "green")
 {   plBonus = 4
     emBonus = 1
@@ -117,31 +120,78 @@ if (plTwistColour = "green", emTwistColour = "green")
 }
 
 else if
-(plOrange = emResultTwist) {
+(plTwistColour = "green", emTwistColour = "orange") {
     emTwist = emResultTwist
    console.log(( {emTwist} ) );
 }    
 
 else if 
-(emGreen = emResultTwist) {
+(plTwistColour = "green", emTwistColour = "blue") {
     emTwist = emResultTwist
     console.log(( {emTwist} ) );
 }
+else if
+(plTwistColour = "blue", emTwistColour = "blue") {
+    emTwist = emResultTwist
+   console.log(( {emTwist} ) );
+}    
 
+else if 
+(plTwistColour = "blue", emTwistColour = "orange") {
+    emTwist = emResultTwist
+    console.log(( {emTwist} ) );
+}
+else if
+(plTwistColour = "blue", emTwistColour = "green") {
+    emTwist = emResultTwist
+   console.log(( {emTwist} ) );
+}    
 
+else if 
+(plTwistColour = "orange", emTwistColour = "orange") {
+    emTwist = emResultTwist
+    console.log(( {emTwist} ) );
+}
+else if
+(plTwistColour = "orange", emTwistColour = "blue") {
+    emTwist = emResultTwist
+   console.log(( {emTwist} ) );
+}    
+
+else if 
+(plTwistColour = "orange", emTwistColour = "green") {
+    emTwist = emResultTwist
+    console.log(( {emTwist} ) );
+}
 
 
 // calculate Attack Power
 let plAttack = plPower + plTwist + plBonus
 let emAttack = emPower + emTwist + emBonus
 
-
+// Who has the highest attack power
+if (plAttack > emAttack){
+    dmgModel = plAttack - emAttack
+    plHp = plHp - dmgModel
+    console.log(( "Player won" ) );
+}
+else if (emAttack > plAttack){
+ dmgModel = emAttack - plAttack
+    cpuHp = cpuHp - dmgModel
+    console.log(( "CPU Won" ) );
+}
 
 
 console.log(( {plPower} ) );
 console.log(( {plTwist} ) );
 console.log(( {plAttack} ) );
 console.log(( {emAttack} ) );
+console.log(( {plHp} ) );
+console.log(( {cpuHp} ) );
+console.log(( {plAttack} ) );
+
+console.log(( {emAttack} ) );
+
 
 
 

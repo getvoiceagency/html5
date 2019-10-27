@@ -23,6 +23,8 @@ var emPower = 1;
 var emTwist = 1;
 var plBonus = 1;
 var emBonus = 1;
+//Damage Mechanics
+var dmgModel = 0;
 var plResultPower = Math.max(plStar, plHeart, plDefence);
 var plResultTwist = Math.max(plBlue, plOrange, plGreen);
 var emResultPower = Math.max(emStar, emHeart, emDefence);
@@ -78,25 +80,64 @@ else if (emGreen = emResultTwist) {
     emTwist = emResultTwist;
     console.log(({ emTwist: emTwist }));
 }
-//check for colours and add bonus , stuck here
+//check for colours and add bonus to 
 if (plTwistColour = "green", emTwistColour = "green") {
     plBonus = 4;
     emBonus = 1;
     console.log(({ emBonus: emBonus }));
 }
-else if (plOrange = emResultTwist) {
+else if (plTwistColour = "green", emTwistColour = "orange") {
     emTwist = emResultTwist;
     console.log(({ emTwist: emTwist }));
 }
-else if (emGreen = emResultTwist) {
+else if (plTwistColour = "green", emTwistColour = "blue") {
+    emTwist = emResultTwist;
+    console.log(({ emTwist: emTwist }));
+}
+else if (plTwistColour = "blue", emTwistColour = "blue") {
+    emTwist = emResultTwist;
+    console.log(({ emTwist: emTwist }));
+}
+else if (plTwistColour = "blue", emTwistColour = "orange") {
+    emTwist = emResultTwist;
+    console.log(({ emTwist: emTwist }));
+}
+else if (plTwistColour = "blue", emTwistColour = "green") {
+    emTwist = emResultTwist;
+    console.log(({ emTwist: emTwist }));
+}
+else if (plTwistColour = "orange", emTwistColour = "orange") {
+    emTwist = emResultTwist;
+    console.log(({ emTwist: emTwist }));
+}
+else if (plTwistColour = "orange", emTwistColour = "blue") {
+    emTwist = emResultTwist;
+    console.log(({ emTwist: emTwist }));
+}
+else if (plTwistColour = "orange", emTwistColour = "green") {
     emTwist = emResultTwist;
     console.log(({ emTwist: emTwist }));
 }
 // calculate Attack Power
 var plAttack = plPower + plTwist + plBonus;
 var emAttack = emPower + emTwist + emBonus;
+// Who has the highest attack power
+if (plAttack > emAttack) {
+    dmgModel = plAttack - emAttack;
+    plHp = plHp - dmgModel;
+    console.log(("Player won"));
+}
+else if (emAttack > plAttack) {
+    dmgModel = emAttack - plAttack;
+    cpuHp = cpuHp - dmgModel;
+    console.log(("CPU Won"));
+}
 console.log(({ plPower: plPower }));
 console.log(({ plTwist: plTwist }));
+console.log(({ plAttack: plAttack }));
+console.log(({ emAttack: emAttack }));
+console.log(({ plHp: plHp }));
+console.log(({ cpuHp: cpuHp }));
 console.log(({ plAttack: plAttack }));
 console.log(({ emAttack: emAttack }));
 //Console 
