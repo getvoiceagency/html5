@@ -5,8 +5,9 @@ let plDefence = 4
 let plBlue = 1
 let plOrange = 3
 let plGreen = 5
-let plHp = 10
+let plHealth = 10
 let plTwistColour = "green"
+
 
 //CPU card stats
 let emStar = 8
@@ -15,7 +16,7 @@ let emDefence = 5
 let emBlue = 3
 let emOrange = 4
 let emGreen = 6
-let cpuHp = 10
+let emHealth = 10
 let emTwistColour = "green"
 
 let plPower = 1
@@ -114,7 +115,7 @@ else if
 
 //check for colours and add bonus to 
 if (plTwistColour = "green", emTwistColour = "green")
-{   plBonus = 4
+{   plBonus = 2
     emBonus = 1
    console.log(( {emBonus} ) );
 }
@@ -172,13 +173,16 @@ let emAttack = emPower + emTwist + emBonus
 // Who has the highest attack power
 if (plAttack > emAttack){
     dmgModel = plAttack - emAttack
-    plHp = plHp - dmgModel
+    plHealth = plHealth - dmgModel
     console.log(( "Player won" ) );
 }
 else if (emAttack > plAttack){
  dmgModel = emAttack - plAttack
-    cpuHp = cpuHp - dmgModel
+    emHealth = emHealth - dmgModel
     console.log(( "CPU Won" ) );
+}
+else if (plAttack = emAttack){
+    console.log(( "Draw" ) );
 }
 
 
@@ -186,11 +190,12 @@ console.log(( {plPower} ) );
 console.log(( {plTwist} ) );
 console.log(( {plAttack} ) );
 console.log(( {emAttack} ) );
-console.log(( {plHp} ) );
-console.log(( {cpuHp} ) );
+console.log(( {plHealth} ) );
+console.log(( {emHealth} ) );
 console.log(( {plAttack} ) );
-
 console.log(( {emAttack} ) );
+console.log(( {dmgModel} ) );
+
 
 
 
