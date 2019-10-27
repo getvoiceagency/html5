@@ -19,12 +19,12 @@ let emGreen = 6
 let emHealth = 10
 let emTwistColour = "green"
 
-let plPower = 1
-let plTwist = 1
-let emPower = 1
-let emTwist = 1
-let plBonus = 1
-let emBonus = 1
+let plPower = 0
+let plTwist = 0
+let emPower = 0
+let emTwist = 0
+let plBonus = 0
+let emBonus = 0
 
 //Damage Mechanics
 let dmgModel = 0
@@ -113,7 +113,7 @@ else if
     console.log(( {emTwist} ) );
 }
 
-//check for colours and add bonus to 
+//check for colours and add bonus to attack via plBonus
 if (plTwistColour = "green", emTwistColour = "green")
 {   plBonus = 2
     emBonus = 1
@@ -122,79 +122,106 @@ if (plTwistColour = "green", emTwistColour = "green")
 
 else if
 (plTwistColour = "green", emTwistColour = "orange") {
-    emTwist = emResultTwist
+    plBonus = 2
+    emBonus = 1
    console.log(( {emTwist} ) );
 }    
 
 else if 
 (plTwistColour = "green", emTwistColour = "blue") {
-    emTwist = emResultTwist
+    plBonus = 2
+    emBonus = 1
     console.log(( {emTwist} ) );
 }
 else if
 (plTwistColour = "blue", emTwistColour = "blue") {
-    emTwist = emResultTwist
-   console.log(( {emTwist} ) );
+    plBonus = 2
+    emBonus = 1
+    console.log(( {emTwist} ) );
 }    
 
 else if 
 (plTwistColour = "blue", emTwistColour = "orange") {
-    emTwist = emResultTwist
+    plBonus = 2
+    emBonus = 1
     console.log(( {emTwist} ) );
 }
 else if
 (plTwistColour = "blue", emTwistColour = "green") {
-    emTwist = emResultTwist
+    plBonus = 2
+    emBonus = 1
    console.log(( {emTwist} ) );
 }    
 
 else if 
 (plTwistColour = "orange", emTwistColour = "orange") {
-    emTwist = emResultTwist
+    plBonus = 2
+    emBonus = 1
     console.log(( {emTwist} ) );
 }
 else if
 (plTwistColour = "orange", emTwistColour = "blue") {
-    emTwist = emResultTwist
+    plBonus = 2
+    emBonus = 1
    console.log(( {emTwist} ) );
 }    
 
 else if 
 (plTwistColour = "orange", emTwistColour = "green") {
-    emTwist = emResultTwist
+    plBonus = 2
+    emBonus = 1
     console.log(( {emTwist} ) );
 }
 
 
+// calculate based on card stats how much damage is done.
+
 // calculate Attack Power
-let plAttack = plPower + plTwist + plBonus
-let emAttack = emPower + emTwist + emBonus
+    let plAttack = plPower + plTwist + plBonus
+    let emAttack = emPower + emTwist + emBonus
 
 // Who has the highest attack power
-if (plAttack > emAttack){
-    dmgModel = plAttack - emAttack
-    plHealth = plHealth - dmgModel
+    if (plAttack > emAttack){
+    dmgModel = plAttack - emDefence
+    emHeart = emHeart - dmgModel
+//if the card looses all health do 1dmg to cpu
+    if (emHeart < 1){
+    emHealth = emHealth - 1
+    }
+// check cpu health for negative
+     if (emHealth < 0) {
+        emHealth = 0
+        
+}
     console.log(( "Player won" ) );
 }
-else if (emAttack > plAttack){
- dmgModel = emAttack - plAttack
-    emHealth = emHealth - dmgModel
+    else if (emAttack > plAttack){
+    dmgModel = emAttack - plDefence
+     plHeart =plHeart - dmgModel
+    if (plHeart < 1){
+    plHealth = plHealth - 1
+}
+    if (plHealth < 0) {
+        plHealth = 0
+        
+}
     console.log(( "CPU Won" ) );
 }
-else if (plAttack = emAttack){
+    else if (plAttack = emAttack){
     console.log(( "Draw" ) );
 }
 
 
-console.log(( {plPower} ) );
-console.log(( {plTwist} ) );
-console.log(( {plAttack} ) );
-console.log(( {emAttack} ) );
+
+
+//show me show me... lovely stats
 console.log(( {plHealth} ) );
 console.log(( {emHealth} ) );
 console.log(( {plAttack} ) );
 console.log(( {emAttack} ) );
 console.log(( {dmgModel} ) );
+console.log(( {plHeart} ) );
+console.log(( {emHeart} ) );
 
 
 
