@@ -25,6 +25,7 @@ let emPower = 0
 let emTwist = 0
 let plBonus = 0
 let emBonus = 0
+let winner = 0
 
 //Damage Mechanics
 let dmgModel = 0
@@ -187,6 +188,9 @@ else if
 //if the card looses all health do 1dmg to cpu
     if (emHeart < 1){
     emHealth = emHealth - 1
+    
+    //sucky solution want booleen
+    winner = 1
     }
 // check cpu health for negative
      if (emHealth < 0) {
@@ -203,14 +207,17 @@ else if
 }
     if (plHealth < 0) {
         plHealth = 0
+        winner = 2
         
 }
     console.log(( "CPU Won" ) );
+    
 }
     else if (plAttack = emAttack){
     console.log(( "Draw" ) );
 }
 
+event
 
 
 

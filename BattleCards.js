@@ -23,6 +23,7 @@ var emPower = 0;
 var emTwist = 0;
 var plBonus = 0;
 var emBonus = 0;
+var winner = 0;
 //Damage Mechanics
 var dmgModel = 0;
 var plResultPower = Math.max(plStar, plHeart, plDefence);
@@ -137,6 +138,8 @@ if (plAttack > emAttack) {
     //if the card looses all health do 1dmg to cpu
     if (emHeart < 1) {
         emHealth = emHealth - 1;
+        //sucky solution want booleen
+        winner = 1;
     }
     // check cpu health for negative
     if (emHealth < 0) {
@@ -152,12 +155,14 @@ else if (emAttack > plAttack) {
     }
     if (plHealth < 0) {
         plHealth = 0;
+        winner = 2;
     }
     console.log(("CPU Won"));
 }
 else if (plAttack = emAttack) {
     console.log(("Draw"));
 }
+event;
 //show me show me... lovely stats
 console.log(({ plHealth: plHealth }));
 console.log(({ emHealth: emHealth }));
