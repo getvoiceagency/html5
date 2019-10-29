@@ -5,7 +5,7 @@
         <script src="BattleCards.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/plugins/PixiPlugin.min.js"></script>
     </head>
      
@@ -38,6 +38,19 @@
         s.parentNode.insertBefore(wf, s);
 })();
 
+/* global Howl*/
+//setup music
+var sound = new Howl({
+      src: ['backgroundmusic.mp3'],
+      volume: 0.1,
+      autoplay: true,
+      loop: true,
+    });
+    
+    var id1 =  sound.play();
+    sound.fade(0, 1, 3000, id1);
+    
+    
 /* jshint ignore:end */
     // create white text
     var score1 = new PIXI.Text('Player 10', { font: '35px Snippet', fill: 'white', align: 'center' });
@@ -77,7 +90,7 @@
         
      
         stage.addChild(card1);
-    };
+    }
     
     // get card 2
     {
@@ -85,28 +98,28 @@
         
      
         stage.addChild(card2);
-    };
+    }
     // get score orange
     {
         var scoreOrange = PIXI.Sprite.fromImage('score-orange.png');
         
      
         container.addChild(scoreOrange);
-    };
+    }
     // get score red
     {
         var scoreRed = PIXI.Sprite.fromImage('score-red.png');
         
      
         container.addChild(scoreRed);
-    };
+    }
      {
         var vs = PIXI.Sprite.fromImage('VS.png');
         
      
         container.addChild(vs);
-    };
-};
+    }
+}
 
 
 
@@ -172,11 +185,12 @@
     vs.alpha = 0;
 
 /*global TimelineMax*/
-/*global Sine*/
+/*global Power4*/
 /*global Power3*/
+
     var tl = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: true })
-    .to(card1, 1, { pixi: { x: 125, y: 125,}, ease: Power3.easeInOut }, 0.9 )
-    .to(card1, 2, { pixi: {alpha: 1, delay:7.5,}, ease: Power3.easeInOut }, 0.9)
+    .to(card1, 1, { pixi: { x: 125, y: 150,}, ease: Power3.easeInOut }, 0.9 )
+    .to(card1, 2, { pixi: {alpha: 1, delay:7.5,}, ease: Power3.easeInOut }, 0.5)
     .to(card1, 3, { pixi: { x: 125, y: 150, scale: 0.5,}, ease: Power3.easeInOut }, 0.9)
 
     var t2 = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: true })
@@ -185,7 +199,7 @@
     .to(card2, 3, { pixi: { x: 775, y: 150, scale: 0.5 }, ease: Power3.easeInOut }, 0.9)
     
     var t3 = new TimelineMax({ repeat: 0, delay: 1.5, yoyo: true })
-    .to(vs, 4, { pixi: {alpha: 1, }}, 0.1)
+    .to(vs, 4, { pixi: {alpha: 1, }}, 0.1);
     
     
 // create a call back for card events
@@ -203,17 +217,29 @@
 
     // render the root container
     renderer.render(stage);
+    
+
+
 /*global plAttackAnim*/
+/*global CustomWiggle*/
 document.getElementById("cpuLoose").addEventListener("click", function(){
-var plAttackAnim  = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: true })
-    .to(card1, 2, { pixi: { x: 125, y: 450, scale: 0.5,}, ease: Power3.easeInOut }, 0.9)
-  
+
+var plAttackAnim  = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: false })
+    .to(card1, 2, { pixi: {x: 400, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 0)
+    .to(vs,    2, { pixi: {alpha: 0, }, ease: Power4.easeInOut }, 0.0)
+    .to(card2, 2, { pixi: {x: 1500, y: 150, scale: 0.2, rotation:1000,transformOrigin:"500px 300px", }, ease: Power4.easeInOut }, 2.0)
+    .to(card1, 2, { pixi: {x: 450, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 2.3)
+    .to(card1, 2, { pixi: {x: 400, y: 120, scale: 0.6,}, ease: Power4.easeInOut }, 2.6)
 });
 
 /*global plAttackAnim*/
 document.getElementById("playerLoose").addEventListener("click", function(){
 var cpuAttackAnim  = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: true })
-    .to(card2, 1, { pixi: { x: 325, y: 450, scale: 0.5,}, ease: Power3.easeInOut }, 0.9)
+   .to(card2, 2, { pixi: {x: 500, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 0)
+    .to(vs,    2, { pixi: {alpha: 0, }, ease: Power4.easeInOut }, 0.0)
+    .to(card1, 2, { pixi: {x: -1000, y: 150, scale: 0.2, rotation:1000,transformOrigin:"500px 300px", }, ease: Power4.easeInOut }, 2.0)
+    .to(card2, 2, { pixi: {x: 450, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 2.3)
+    .to(card2, 2, { pixi: {x: 410, y: 120, scale: 0.6,}, ease: Power4.easeInOut }, 2.6)
   
 });
 
