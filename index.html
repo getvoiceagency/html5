@@ -224,10 +224,16 @@ var sound = new Howl({
 /*global CustomWiggle*/
 document.getElementById("cpuLoose").addEventListener("click", function(){
 
+/*global TweenMax*/
+//TweenMax.set('card2', {
+  //transformOrigin:'50% 50%',
+//});
+
+//buggy rotation always from top left even though its set to 50/50% center
 var plAttackAnim  = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: false })
     .to(card1, 2, { pixi: {x: 400, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 0)
     .to(vs,    2, { pixi: {alpha: 0, }, ease: Power4.easeInOut }, 0.0)
-    .to(card2, 2, { pixi: {x: 1500, y: 150, scale: 0.2, rotation:1000,transformOrigin:"500px 300px", }, ease: Power4.easeInOut }, 2.0)
+    .to(card2, 2, { pixi: {x: 1200, y: 150, scale: 0.2,transformOrigin:'50% 50%', rotation:'+=2060'},ease:Power0.easeNone }, 2.0)
     .to(card1, 2, { pixi: {x: 450, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 2.3)
     .to(card1, 2, { pixi: {x: 400, y: 120, scale: 0.6,}, ease: Power4.easeInOut }, 2.6)
 });
