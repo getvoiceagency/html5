@@ -5,6 +5,7 @@
         <script src="BattleCards.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/plugins/PixiPlugin.min.js"></script>
     </head>
      
@@ -38,7 +39,7 @@
 })();
 
 /* jshint ignore:end */
-    // create some white text
+    // create white text
     var score1 = new PIXI.Text('Player 10', { font: '35px Snippet', fill: 'white', align: 'center' });
     var score2 = new PIXI.Text('CPU 10', { font: '35px Snippet', fill: 'white', align: 'center' });
 
@@ -187,33 +188,7 @@
     .to(vs, 4, { pixi: {alpha: 1, }}, 0.1)
     
     
-// create a call back and hook for card events
-
-
-if (winner == 1){
-    traffic.setIsCardAction(true);
-}
-
-
-function Create(callback) {
-  var isCardAction = false;
-  var isCardActionRunning = false;
-  return { 
-    getCardAction   : function()  { return isCardAction; },
-    setCardAction  : function(p) { isCardAction = p; callback(isCardAction, isCardActionRunning); },
-    getIsCardActionRunning : function()  { return isCardActionRunning; },
-    setIsCardActionRunning : function(p) { isCardActionRunning = p; callback(isCardAction, isCardActionRunning); }
-  };
-}
-/*global go*/
-var traffic = Create(function(isCardAction, isCardActionRunning) {
-  if (isCardAction && !isCardActionRunning) {
-    go(// New animation for card action here
-        
-        );
-  }
-});
-
+// create a call back for card events
 
 
 
@@ -228,9 +203,24 @@ var traffic = Create(function(isCardAction, isCardActionRunning) {
 
     // render the root container
     renderer.render(stage);
+/*global plAttackAnim*/
+document.getElementById("cpuLoose").addEventListener("click", function(){
+var plAttackAnim  = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: true })
+    .to(card1, 2, { pixi: { x: 125, y: 450, scale: 0.5,}, ease: Power3.easeInOut }, 0.9)
+  
+});
+
+/*global plAttackAnim*/
+document.getElementById("playerLoose").addEventListener("click", function(){
+var cpuAttackAnim  = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: true })
+    .to(card2, 1, { pixi: { x: 325, y: 450, scale: 0.5,}, ease: Power3.easeInOut }, 0.9)
+  
+});
 
     }
 </script>
+<button id="cpuLoose">CPU Loose</button>
+<button id="playerLoose">Player Loose</button>
 
 
     </body>
