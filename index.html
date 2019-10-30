@@ -41,14 +41,17 @@
 /* global Howl*/
 //setup music
 var sound = new Howl({
-      src: ['backgroundmusic.mp3'],
-      volume: 0.1,
-      autoplay: true,
-      loop: true,
-    });
+     src: ['backgroundmusic.mp3'],
+     volume: 0.4,
+     autoplay: true,
+     loop: true,
+   });
     
-    var id1 =  sound.play();
-    sound.fade(0, 1, 3000, id1);
+  //  var playBackground =  sound.play();
+// sound.fade(0, 1, 3000, playBackground);
+    
+
+
     
     
 /* jshint ignore:end */
@@ -183,6 +186,7 @@ var sound = new Howl({
     vs.scale.x =0.07; 
     vs.scale.y =0.07; 
     vs.alpha = 0;
+    
 
 /*global TimelineMax*/
 /*global Power4*/
@@ -201,10 +205,6 @@ var sound = new Howl({
     var t3 = new TimelineMax({ repeat: 0, delay: 1.5, yoyo: true })
     .to(vs, 4, { pixi: {alpha: 1, }}, 0.1);
     
-    
-// create a call back for card events
-
-
 
 // start animating
     animate();
@@ -219,21 +219,21 @@ var sound = new Howl({
     renderer.render(stage);
     
 
-
 /*global plAttackAnim*/
 /*global CustomWiggle*/
 document.getElementById("cpuLoose").addEventListener("click", function(){
 
 /*global TweenMax*/
-//TweenMax.set('card2', {
-  //transformOrigin:'50% 50%',
-//});
+TweenMax.set('card2', {
+transformOrigin:'70% 30%',
+});
 
 //buggy rotation always from top left even though its set to 50/50% center
 var plAttackAnim  = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: false })
     .to(card1, 2, { pixi: {x: 400, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 0)
     .to(vs,    2, { pixi: {alpha: 0, }, ease: Power4.easeInOut }, 0.0)
-    .to(card2, 2, { pixi: {x: 1200, y: 150, scale: 0.2,transformOrigin:'50% 50%', rotation:'+=2060'},ease:Power0.easeNone }, 2.0)
+    .call(PlayHitSound)
+    .to(card2, 2, { pixi: {x: 1500, y: 150, scale: 0.2,transformOrigin:'70% 30%', rotation:'+=660'},ease:Power3.easeInOut }, 2.0)
     .to(card1, 2, { pixi: {x: 450, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 2.3)
     .to(card1, 2, { pixi: {x: 400, y: 120, scale: 0.6,}, ease: Power4.easeInOut }, 2.6)
 });
@@ -249,10 +249,26 @@ var cpuAttackAnim  = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: true }
   
 });
 
+function PlayHitSound() {   
+var hitSound = new Howl({
+  src: ['audioattack.mp3'],
+   autoplay: true,
+   volume: 0.2,
+   loop: false,
+   
+});
+
+hitSound.once('load', function(){
+  hitSound.stop();
+});
+}
+
     }
 </script>
 <button id="cpuLoose">CPU Loose</button>
 <button id="playerLoose">Player Loose</button>
+
+
 
 
     </body>
