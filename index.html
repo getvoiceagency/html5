@@ -40,15 +40,15 @@
 
 /* global Howl*/
 //setup music
-var sound = new Howl({
-     src: ['backgroundmusic.mp3'],
-     volume: 0.4,
-     autoplay: true,
-     loop: true,
-   });
+//var sound = new Howl({
+  //   src: ['backgroundmusic.mp3'],
+    // volume: 0.0,
+     //autoplay: true,
+    // loop: true,
+  // });
     
-  //  var playBackground =  sound.play();
-// sound.fade(0, 1, 3000, playBackground);
+  // var playBackground =  sound.play();
+  // sound.fade(0, 1, 3000, playBackground);
     
 
 
@@ -92,7 +92,7 @@ var sound = new Howl({
         var card1 = PIXI.Sprite.fromImage('card1.png');
         
      
-        stage.addChild(card1);
+        container.addChild(card1);
     }
     
     // get card 2
@@ -100,7 +100,7 @@ var sound = new Howl({
         var card2 = PIXI.Sprite.fromImage('card2.png');
         
      
-        stage.addChild(card2);
+        container.addChild(card2);
     }
     // get score orange
     {
@@ -164,6 +164,9 @@ var sound = new Howl({
     stage.addChild(score1);
     stage.addChild(score2);
     stage.addChild(vs);
+    stage.addChild(card1);
+    stage.addChild(card2);
+
 
 
 //set score position
@@ -187,6 +190,131 @@ var sound = new Howl({
     vs.scale.y =0.07; 
     vs.alpha = 0;
     
+    function particle(){
+        
+        var emitter = new PIXI.particles.Emitter(
+
+	// The PIXI.Container to put the emitter in
+	// if using blend modes, it's important to put this
+	// on top of a bitmap, and not use the root stage Container
+	container,
+
+	// The collection of particle images to use
+	[PIXI.Texture.fromImage('mc.png')],
+
+	// Emitter configuration, edit this to change the look
+	// of the emitter
+	{
+		alpha: {
+			list: [
+				{
+					value: 0.8,
+					time: 0
+				},
+				{
+					value: 0.1,
+					time: 1
+				}
+			],
+			isStepped: false
+		},
+		scale: {
+			list: [
+				{
+					value: 1,
+					time: 0
+				},
+				{
+					value: 0.3,
+					time: 1
+				}
+			],
+			isStepped: false
+		},
+		color: {
+			list: [
+				{
+					value: "fb1010",
+					time: 0
+				},
+				{
+					value: "f5b830",
+					time: 1
+				}
+			],
+			isStepped: false
+		},
+		speed: {
+			list: [
+				{
+					value: 200,
+					time: 0
+				},
+				{
+					value: 100,
+					time: 1
+				}
+			],
+			isStepped: false
+		},
+		startRotation: {
+			min: 0,
+			max: 360
+		},
+		rotationSpeed: {
+			min: 0,
+			max: 0
+		},
+		lifetime: {
+			min: 0.5,
+			max: 0.5
+		},
+		frequency: 0.008,
+		spawnChance: 1,
+		particlesPerWave: 1,
+		emitterLifetime: 0.31,
+		maxParticles: 1000,
+		pos: {
+			x: 0,
+			y: 0
+		},
+		addAtBack: false,
+		spawnType: "circle",
+		spawnCircle: {
+			x: 0,
+			y: 0,
+			r: 10
+		}
+	}
+);
+
+// Calculate the current time
+var elapsed = Date.now();
+
+// Update function every frame
+var update = function(){
+
+	// Update the next frame
+	requestAnimationFrame(update);
+
+	var now = Date.now();
+
+	// The emitter requires the elapsed
+	// number of seconds since the last update
+	emitter.update((now - elapsed) * 0.001);
+	elapsed = now;
+
+	// Should re-render the PIXI Stage
+	// renderer.render(stage);
+};
+
+// Start emitting
+emitter.emit = true;
+
+// Start the update
+update();
+        
+    }
 
 /*global TimelineMax*/
 /*global Power4*/
@@ -220,33 +348,30 @@ var sound = new Howl({
     
 
 /*global plAttackAnim*/
-/*global CustomWiggle*/
-document.getElementById("cpuLoose").addEventListener("click", function(){
-
-/*global TweenMax*/
-TweenMax.set('card2', {
-transformOrigin:'70% 30%',
-});
-
 //buggy rotation always from top left even though its set to 50/50% center
+document.getElementById("cpuLoose").addEventListener("click", function(){
+    
 var plAttackAnim  = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: false })
     .to(card1, 2, { pixi: {x: 400, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 0)
-    .to(vs,    2, { pixi: {alpha: 0, }, ease: Power4.easeInOut }, 0.0)
     .call(PlayHitSound)
-    .to(card2, 2, { pixi: {x: 1500, y: 150, scale: 0.2,transformOrigin:'70% 30%', rotation:'+=660'},ease:Power3.easeInOut }, 2.0)
+    .call(particle)
+    .to(vs,    2, { pixi: {alpha: 0, }, ease: Power4.easeInOut }, 0.0)
+    .to(card2, 2, { pixi: {x: 1500, y: 150, scale: 0.2,transformOrigin:'50% 50%', rotation:'+=660'},ease:Power3.easeInOut }, 2.0)
     .to(card1, 2, { pixi: {x: 450, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 2.3)
     .to(card1, 2, { pixi: {x: 400, y: 120, scale: 0.6,}, ease: Power4.easeInOut }, 2.6)
+
+    
 });
 
 /*global plAttackAnim*/
 document.getElementById("playerLoose").addEventListener("click", function(){
 var cpuAttackAnim  = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: true })
-   .to(card2, 2, { pixi: {x: 500, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 0)
+    .to(card2, 2, { pixi: {x: 500, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 0)
+    .call(PlayHitSound)
     .to(vs,    2, { pixi: {alpha: 0, }, ease: Power4.easeInOut }, 0.0)
     .to(card1, 2, { pixi: {x: -1000, y: 150, scale: 0.2, rotation:1000,transformOrigin:"500px 300px", }, ease: Power4.easeInOut }, 2.0)
     .to(card2, 2, { pixi: {x: 450, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 2.3)
     .to(card2, 2, { pixi: {x: 410, y: 120, scale: 0.6,}, ease: Power4.easeInOut }, 2.6)
-  
 });
 
 function PlayHitSound() {   
@@ -254,16 +379,33 @@ var hitSound = new Howl({
   src: ['audioattack.mp3'],
    autoplay: true,
    volume: 0.2,
-   loop: false,
-   
-});
+  });
 
 hitSound.once('load', function(){
   hitSound.stop();
 });
+
+}
+        
 }
 
-    }
+function PlayWinSound() {   
+var winSound = new Howl({
+  src: ['cardwin.mp3'],
+   autoplay: true,
+   volume: 0.2,
+});
+
+winSound.once('load', function(){
+  winSound.stop();
+});
+        
+        
+        
+}
+
+
+    
 </script>
 <button id="cpuLoose">CPU Loose</button>
 <button id="playerLoose">Player Loose</button>
