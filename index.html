@@ -326,13 +326,14 @@ update();
     .to(card1, 3, { pixi: { x: 125, y: 150, scale: 0.5,}, ease: Power3.easeInOut }, 0.9)
 
     var t2 = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: true })
-    .to(card2, 1, { pixi: { x: 125, y: 225, }, ease: Power3.easeInOut }, 0.9)
+    .to(card2, 1, { pixi: { x: 125, y: 225,},transformOrigin:'50% 50%', ease: Power3.easeInOut }, 0.9)
     .to(card2, 2, { pixi: {alpha: 1, delay:7.5,}, ease: Power3.easeInOut }, 0.9)
     .to(card2, 3, { pixi: { x: 775, y: 150, scale: 0.5 }, ease: Power3.easeInOut }, 0.9)
     
     var t3 = new TimelineMax({ repeat: 0, delay: 1.5, yoyo: true })
     .to(vs, 4, { pixi: {alpha: 1, }}, 0.1);
     
+
 
 // start animating
     animate();
@@ -346,17 +347,16 @@ update();
     // render the root container
     renderer.render(stage);
     
-
 /*global plAttackAnim*/
 //buggy rotation always from top left even though its set to 50/50% center
 document.getElementById("cpuLoose").addEventListener("click", function(){
     
 var plAttackAnim  = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: false })
+    .set(".card2", {transformOrigin: "50% 50%"})
     .to(card1, 2, { pixi: {x: 400, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 0)
     .call(PlayHitSound)
-    .call(particle)
     .to(vs,    2, { pixi: {alpha: 0, }, ease: Power4.easeInOut }, 0.0)
-    .to(card2, 2, { pixi: {x: 1500, y: 150, scale: 0.2,transformOrigin:'50% 50%', rotation:'+=660'},ease:Power3.easeInOut }, 2.0)
+    .to(card2, 2, { pixi: {x: 1500, y: 150, scale: 0.2, rotation:'+=660'},transformOrigin:'center',ease:Power3.easeInOut }, 2.0)
     .to(card1, 2, { pixi: {x: 450, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 2.3)
     .to(card1, 2, { pixi: {x: 400, y: 120, scale: 0.6,}, ease: Power4.easeInOut }, 2.6)
 
