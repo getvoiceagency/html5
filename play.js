@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title> </title>
-        <script src="BattleCards.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/plugins/PixiPlugin.min.js"></script>
-    </head>
-     
-    <body>
-   
-<script>
-
-/*global PIXI*/
-        var renderer = PIXI.autoDetectRenderer(1280, 800,{});
-    document.body.appendChild(renderer.view);
-
+//Begin MAIN PLAY AREA 
+//
+//
+//  
  // // Load them google fonts before starting...!
     window.WebFontConfig = {
         google: {
@@ -40,15 +25,15 @@
 
 /* global Howl*/
 //setup music
-//var sound = new Howl({
-  //   src: ['backgroundmusic.mp3'],
-    // volume: 0.0,
-     //autoplay: true,
-    // loop: true,
-  // });
+var sound = new Howl({
+    src: ['assets/backgroundmusic.mp3'],
+     volume: 0.0,
+    autoplay: true,
+     loop: true,
+   });
     
-  // var playBackground =  sound.play();
-  // sound.fade(0, 1, 3000, playBackground);
+  var playBackground =  sound.play();
+   sound.fade(0, 1, 3000, playBackground);
     
 
 
@@ -68,7 +53,7 @@
 // set container
 //Set background
     stage.addChild(container);
-    var landscapeTexture = PIXI.Texture.fromImage('2613089.jpg');
+    var landscapeTexture = PIXI.Texture.fromImage('assets/2613089.jpg');
     
 
     var background = new PIXI.Sprite(landscapeTexture);
@@ -89,7 +74,7 @@
 {
 // get card 1
  {
-        var card1 = PIXI.Sprite.fromImage('card1.png');
+        var card1 = PIXI.Sprite.fromImage('assets/card1.png');
         
      
         container.addChild(card1);
@@ -97,27 +82,27 @@
     
     // get card 2
     {
-        var card2 = PIXI.Sprite.fromImage('card2.png');
+        var card2 = PIXI.Sprite.fromImage('assets/card2.png');
         
      
         container.addChild(card2);
     }
     // get score orange
     {
-        var scoreOrange = PIXI.Sprite.fromImage('score-orange.png');
+        var scoreOrange = PIXI.Sprite.fromImage('assets/score-orange.png');
         
      
         container.addChild(scoreOrange);
     }
     // get score red
     {
-        var scoreRed = PIXI.Sprite.fromImage('score-red.png');
+        var scoreRed = PIXI.Sprite.fromImage('assets/score-red.png');
         
      
         container.addChild(scoreRed);
     }
      {
-        var vs = PIXI.Sprite.fromImage('VS.png');
+        var vs = PIXI.Sprite.fromImage('assets/VS.png');
         
      
         container.addChild(vs);
@@ -200,7 +185,7 @@
 	container,
 
 	// The collection of particle images to use
-	[PIXI.Texture.fromImage('mc.png')],
+	[PIXI.Texture.fromImage('assets/mc.png')],
 
 	// Emitter configuration, edit this to change the look
 	// of the emitter
@@ -348,12 +333,19 @@ update();
     renderer.render(stage);
     
 /*global plAttackAnim*/
+/*global CustomEase*/
+CustomEase.create("plAttackEase", "M0,0 C0.126,0.382 0.282,0.674 0.44,0.822 0.632,1.002 0.818,1 1,1");
+
 //buggy rotation always from top left even though its set to 50/50% center
+
+
 document.getElementById("cpuLoose").addEventListener("click", function(){
     
 var plAttackAnim  = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: false })
     .set(".card2", {transformOrigin: "50% 50%"})
-    .to(card1, 2, { pixi: {x: 400, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 0)
+    .set(".plAttackEase", {duration: 2})
+    .to(card1,2, { pixi: {x: 400, y: 150, scale: 0.5,}, ease: "Power4.easeIn", })
+   // .to(card1, 2, { pixi: {x: 400, y: 150, scale: 0.5,}, ease: CustomEase.create("custom", "M0,0 C0.11,0.494 0.174,0.674 0.3,0.8 0.432,0.932 0.504,1 1,1") }, 0)
     .call(PlayHitSound)
     .to(vs,    2, { pixi: {alpha: 0, }, ease: Power4.easeInOut }, 0.0)
     .to(card2, 2, { pixi: {x: 1500, y: 150, scale: 0.2, rotation:'+=660'},transformOrigin:'center',ease:Power3.easeInOut }, 2.0)
@@ -376,7 +368,7 @@ var cpuAttackAnim  = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: true }
 
 function PlayHitSound() {   
 var hitSound = new Howl({
-  src: ['audioattack.mp3'],
+  src: ['assets/audioattack.mp3'],
    autoplay: true,
    volume: 0.2,
   });
@@ -391,7 +383,7 @@ hitSound.once('load', function(){
 
 function PlayWinSound() {   
 var winSound = new Howl({
-  src: ['cardwin.mp3'],
+  src: ['assets/cardwin.mp3'],
    autoplay: true,
    volume: 0.2,
 });
@@ -402,16 +394,4 @@ winSound.once('load', function(){
         
         
         
-}
-
-
-    
-</script>
-<button id="cpuLoose">CPU Loose</button>
-<button id="playerLoose">Player Loose</button>
-
-
-
-
-    </body>
-</html>
+}   

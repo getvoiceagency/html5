@@ -1,47 +1,4 @@
-<html>
-    <head>
-        <title> </title>
-        <script src="BattleCards.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/plugins/PixiPlugin.min.js"></script>
-    </head>
-     <style>
-@import url('https://fonts.googleapis.com/css?family=McLaren&display=swap');
-</style>
-    <body>
-   
-<script>
 
-/*global PIXI*/
-
-//Render the main view
-var renderer = PIXI.autoDetectRenderer(1280, 800,{});
-    document.body.appendChild(renderer.view);
-
- // // Load the google fonts before starting...!
-    window.WebFontConfig = {
-        google: {
-        families: ['McLaren',]
-    },
-
-
-};
-
-// include the web-font loader script
-/* jshint ignore:start */
-       (function() {
-        var wf = document.createElement('script');
-        wf.src = ('https:' === document.location.protocol ? 'https' : 'http') +
-        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-        wf.type = 'text/javascript';
-        wf.async = 'true';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(wf, s);
-})(); 
- 
- 
     var  progress = new PIXI.Container();
 
     var container = new PIXI.Container();
@@ -49,7 +6,7 @@ var renderer = PIXI.autoDetectRenderer(1280, 800,{});
 // set container
 //Set background
     progress.addChild(container);
-    var landscapeTexture = PIXI.Texture.fromImage('2613089.jpg');
+    var landscapeTexture = PIXI.Texture.fromImage('assets/2613089.jpg');
     var background = new PIXI.Sprite(landscapeTexture);
 
 //Background to stage
@@ -66,18 +23,18 @@ var renderer = PIXI.autoDetectRenderer(1280, 800,{});
 //construct the images 
 {
 // menu-ui
-         { var deckUi = PIXI.Sprite.fromImage('deck ui.png');
+         { var deckUi = PIXI.Sprite.fromImage('assets/deck ui.png');
 container.addChild(deckUi);
     }
-    { var cancelUi = PIXI.Sprite.fromImage('cancel.png');
+    { var cancelUi = PIXI.Sprite.fromImage('assets/cancel.png');
 container.addChild(cancelUi);
     }
     
-    { var arrowLeftUi = PIXI.Sprite.fromImage('arrow left.png');
+    { var arrowLeftUi = PIXI.Sprite.fromImage('assets/arrow left.png');
 container.addChild(arrowLeftUi);
     }
     
-    { var arrowRightUi = PIXI.Sprite.fromImage('arrow right.png');
+    { var arrowRightUi = PIXI.Sprite.fromImage('assets/arrow right.png');
 container.addChild(arrowRightUi);
     }
     
@@ -168,13 +125,3 @@ var deckText = new PIXI.Text('DECKS', { font: '40px McLaren', fill: 'white', ali
     // render the root container
     renderer.render(progress);
 }
-</script>
-
-
-</body>
-<button id="cpuLoose">CPU Loose</button>
-<button id="playerLoose">Player Loose</button>
-
-    
-    
-</html>
