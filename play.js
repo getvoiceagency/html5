@@ -26,18 +26,17 @@
 /* global Howl*/
 //setup music
 var sound = new Howl({
-    src: ['assets/backgroundmusic.mp3'],
+   src: ['assets/backgroundmusic.mp3'],
      volume: 0.0,
-    autoplay: true,
+   autoplay: true,
      loop: true,
-   });
-    
-  var playBackground =  sound.play();
-   sound.fade(0, 1, 3000, playBackground);
+     preload: true,
+  });
+    var playBackground =  sound.play();
+
+ sound.fade(0, 1, 3000, playBackground);
     
 
-
-    
     
 /* jshint ignore:end */
     // create white text
@@ -107,6 +106,12 @@ var sound = new Howl({
      
         container.addChild(vs);
     }
+     {
+        var cancelUi = PIXI.Sprite.fromImage('assets/cancel.png');
+        
+     
+        container.addChild(cancelUi);
+    }
 }
 
 
@@ -174,6 +179,38 @@ var sound = new Howl({
     vs.scale.x =0.07; 
     vs.scale.y =0.07; 
     vs.alpha = 0;
+    
+
+//position cancel
+    cancelUi.anchor.x = 0;
+    cancelUi.anchor.y = 0;
+    cancelUi.position.x = 1190;
+    cancelUi.position.y = 20;
+    cancelUi.scale.x = 0.4;
+    cancelUi.scale.y = 0.4;
+    
+stage.addChild(cancelUi);
+
+
+// Begin Interactive controls
+cancelUi.interactive = true;
+
+cancelUi.on('touchend', function(e) {
+    
+    var script = document.createElement('script'); 
+          
+        script.src = "main.js"; 
+          
+        document.head.appendChild(script)  
+        
+        console.log("play touched");
+});
+
+cancelUi.click = function(e) {
+    
+window.location = "index.html"
+     console.log("play touched");
+ }     
     
     function particle(){
         
@@ -334,7 +371,7 @@ update();
     
 /*global plAttackAnim*/
 /*global CustomEase*/
-CustomEase.create("plAttackEase", "M0,0 C0.126,0.382 0.282,0.674 0.44,0.822 0.632,1.002 0.818,1 1,1");
+CustomEase.create("plAttackEase", "M0,0 C0.11,0.494 0.174,0.674 0.3,0.8 0.432,0.932 0.504,1 1,1");
 
 //buggy rotation always from top left even though its set to 50/50% center
 
@@ -343,12 +380,12 @@ document.getElementById("cpuLoose").addEventListener("click", function(){
     
 var plAttackAnim  = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: false })
     .set(".card2", {transformOrigin: "50% 50%"})
-    .set(".plAttackEase", {duration: 2})
-    .to(card1,2, { pixi: {x: 400, y: 150, scale: 0.5,}, ease: "Power4.easeIn", })
-   // .to(card1, 2, { pixi: {x: 400, y: 150, scale: 0.5,}, ease: CustomEase.create("custom", "M0,0 C0.11,0.494 0.174,0.674 0.3,0.8 0.432,0.932 0.504,1 1,1") }, 0)
-    .call(PlayHitSound)
+     //.to(card1,duration 2, 2, { pixi: {x: 400, y: 150, scale: 0.5,}, ease: "plAttackEase", })
+     .to(card1, 2, { pixi: {x: 400, y: 150, scale: 0.5,}, ease:Power3.easeInOut  }, 0)
+   .call(PlayHitSound)
     .to(vs,    2, { pixi: {alpha: 0, }, ease: Power4.easeInOut }, 0.0)
     .to(card2, 2, { pixi: {x: 1500, y: 150, scale: 0.2, rotation:'+=660'},transformOrigin:'center',ease:Power3.easeInOut }, 2.0)
+    .call(PlayWinSound)
     .to(card1, 2, { pixi: {x: 450, y: 150, scale: 0.5,}, ease: Power4.easeInOut }, 2.3)
     .to(card1, 2, { pixi: {x: 400, y: 120, scale: 0.6,}, ease: Power4.easeInOut }, 2.6)
 
@@ -371,6 +408,7 @@ var hitSound = new Howl({
   src: ['assets/audioattack.mp3'],
    autoplay: true,
    volume: 0.2,
+preload: true,
   });
 
 hitSound.once('load', function(){
@@ -384,14 +422,16 @@ hitSound.once('load', function(){
 function PlayWinSound() {   
 var winSound = new Howl({
   src: ['assets/cardwin.mp3'],
-   autoplay: true,
+autoplay: true,
    volume: 0.2,
+   preload: true,
 });
 
 winSound.once('load', function(){
   winSound.stop();
 });
-        
+
+   
         
         
 }   
