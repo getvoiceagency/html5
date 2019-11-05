@@ -1,5 +1,5 @@
 //Player Card Stats
-let plStar = 6
+let plStar = 22
 let plHeart = 5
 let plDefence = 4
 let plBlue = 1
@@ -8,6 +8,15 @@ let plGreen = 5
 let plHealth = 10
 let plTwistColour = "green"
 
+
+// Ai 
+//Base Binary Value 50/50
+let BinBase = 50
+//Set Difficulty Modifier
+let easy = 10
+let medium = 20
+let hard = 40
+let outPut = 0
 
 //CPU card stats
 let emStar = 8
@@ -36,6 +45,14 @@ let plResultTwist = Math.max(plBlue,plOrange,plGreen)
 let emResultPower = Math.max(emStar,emHeart,emDefence)
 let emResultTwist = Math.max(emBlue,emOrange,emGreen)
 
+//Create the beat Me score
+let beatMe = BinBase+easy
+
+//Roll a D100
+let diceRoll = Math.floor(Math.random() * 100) + 1  
+
+//If diceRoll is less than beat me Success CPU Is smart
+{
 if 
 (plStar = plResultPower )
 {
@@ -74,6 +91,7 @@ else if
     console.log(( {plTwist} ) );
 }
 
+if (diceRoll < beatMe ){
 // CPU chooses
 
 if 
@@ -113,6 +131,58 @@ else if
     emTwist = emResultTwist
     console.log(( {emTwist} ) );
 }
+
+}
+
+// if the beat me is failed
+else if (diceRoll > beatMe )
+{
+// CPU chooses
+let emResultPower = Math.min(emStar,emHeart,emDefence)
+let emResultTwist = Math.min(emBlue,emOrange,emGreen)
+if 
+(emStar = emResultPower )
+{
+    emPower = emResultPower
+   console.log(( {emPower} ) );
+}
+
+else if
+(emHeart = emResultPower) {
+    emPower = emResultPower
+   console.log(( {emPower} ) );
+}    
+
+else if 
+(emDefence = emResultPower) {
+    emPower = emResultPower
+    console.log(( {emPower} ) );
+}    
+//Find which twist was the greater and add it's value to emTwist
+if 
+(emBlue = emResultTwist )
+{
+    emTwist = emResultTwist
+   console.log(( {emTwist} ) );
+}
+
+else if
+(plOrange = emResultTwist) {
+    emTwist = emResultTwist
+   console.log(( {emTwist} ) );
+}    
+
+else if 
+(emGreen = emResultTwist) {
+    emTwist = emResultTwist
+    console.log(( {emTwist} ) );
+}
+
+//show me show me... lovely stats
+
+console.log(( "roll failed" ) );    
+}
+
 
 //check for colours and add bonus to attack via plBonus
 if (plTwistColour = "green", emTwistColour = "green")
@@ -217,10 +287,6 @@ else if
     console.log(( "Draw" ) );
 }
 
-event
-
-
-
 //show me show me... lovely stats
 console.log(( {plHealth} ) );
 console.log(( {emHealth} ) );
@@ -231,7 +297,7 @@ console.log(( {plHeart} ) );
 console.log(( {emHeart} ) );
 
 
-
+}
 
 
 //Console 

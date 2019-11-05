@@ -1,11 +1,4 @@
 "use strict";
-//Base Binary Value 50/50
-var BinBase = 50;
-//Set Difficulty Modifier
-var easy = 10;
-var medium = 20;
-var hard = 40;
-var outPut = "over";
 // Set Card Variables
 var star = 1;
 var heart = 8;
@@ -13,10 +6,6 @@ var defence = 3;
 var blue = 6;
 var orange = 1;
 var green = 4;
-//Create the beat Me score
-var beatMe = BinBase + hard;
-//Roll a D100
-var diceRoll = Math.floor(Math.random() * 100) + 1;
 //If diceRoll is less than beat me Success
 if (diceRoll < beatMe) {
     // Find which stat is greatest and store it

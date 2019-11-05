@@ -1,11 +1,5 @@
 
-//Base Binary Value 50/50
-let BinBase = 50
-//Set Difficulty Modifier
-let easy = 10
-let medium = 20
-let hard =40
-let outPut = "over"
+
 
 
 // Set Card Variables
@@ -16,11 +10,7 @@ let blue = 6
 let orange =1
 let green =4
 
-//Create the beat Me score
-let beatMe = BinBase+hard 
 
-//Roll a D100
-let diceRoll = Math.floor(Math.random() * 100) + 1  
 
 //If diceRoll is less than beat me Success
 if (diceRoll < beatMe )

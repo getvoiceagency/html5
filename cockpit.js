@@ -17,5 +17,4 @@ cross_fetch_1.default('https://flightdeck.getvoice.agency/api/collections/get/Ca
 })
     .then(function (res) { return res.json(); })
     .then(function (collection) { return console.log(collection); });
-var content = collection.cardName;
 console.log(obj);
