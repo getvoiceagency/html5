@@ -62,6 +62,10 @@ container.addChild(deckUi);
     { var deck4 = PIXI.Sprite.fromImage('assets/card4.png');
 container.addChild(cancelUi);
     }
+    
+     { var deck5 = PIXI.Sprite.fromImage('assets/card5.png');
+container.addChild(cancelUi);
+    }
 
     
 }
@@ -227,7 +231,30 @@ cancelUi.click = function(e) {
     progress.addChild(quit);
  }
     
+arrowLeftUi.interactive = true;
 
+arrowLeftUi.on('touchend', function(e) {
+    
+   
+        console.log("touch!!");
+});
+
+arrowLeftUi.mousedown = function() {
+var t3 = new TimelineMax({ repeat: 0, repeatDelay: 0.5, yoyo: true })
+    .to(cardContainer, 1, { pixi: { x: -140, y: 200,}, ease: Power3.easeInOut }, 0.0 )
+    .to(deck1, 0, { pixi: {alpha: 1, delay:0.1,}, ease: Power3.easeInOut }, 0.5)
+    cardContainer.removeChild(deck1);
+    cardContainer.addChild(deck5);
+    
+    deck5.anchor.x = 0;
+    deck5.anchor.y = 0;
+    deck5.position.x = 1020;
+    deck5.position.y = 70;
+    deck5.scale.x = 0.3;
+    deck5.scale.y = 0.3;
+
+        console.log("Clicked");
+ }
                 
 // start animating
     animate();
