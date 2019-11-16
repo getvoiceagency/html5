@@ -1,5 +1,5 @@
 //Player Card Stats
-let plStar = 22
+let plStar = 6
 let plHeart = 5
 let plDefence = 4
 let plBlue = 1
@@ -7,16 +7,6 @@ let plOrange = 3
 let plGreen = 5
 let plHealth = 10
 let plTwistColour = "green"
-
-
-// Ai 
-//Base Binary Value 50/50
-let BinBase = 50
-//Set Difficulty Modifier
-let easy = 10
-let medium = 20
-let hard = 40
-let outPut = 0
 
 //CPU card stats
 let emStar = 8
@@ -28,30 +18,47 @@ let emGreen = 6
 let emHealth = 10
 let emTwistColour = "green"
 
+// Ai 
+//Base Binary Value 50/50
+let BinBase = 50
+//Set Difficulty Modifier
+let easy = 10
+let medium = 20
+let hard = 40
+let outPut = 0
+
+
+//Init Variables 
+
+//player score
 let plPower = 0
 let plTwist = 0
+
+//Cpu score
 let emPower = 0
 let emTwist = 0
+
+//bonus scores is 
 let plBonus = 0
 let emBonus = 0
+
+//set the winner
 let winner = 0
 
 //Damage Mechanics
 let dmgModel = 0
 
+//Simulate the players choice as best poosible picks
 let plResultPower = Math.max(plStar,plHeart,plDefence)
 let plResultTwist = Math.max(plBlue,plOrange,plGreen)
 
-let emResultPower = Math.max(emStar,emHeart,emDefence)
-let emResultTwist = Math.max(emBlue,emOrange,emGreen)
-
 //Create the beat Me score
-let beatMe = BinBase+easy
+let beatMe = BinBase+medium
 
 //Roll a D100
 let diceRoll = Math.floor(Math.random() * 100) + 1  
 
-//If diceRoll is less than beat me Success CPU Is smart
+// do the player simulation
 {
 if 
 (plStar = plResultPower )
@@ -91,9 +98,16 @@ else if
     console.log(( {plTwist} ) );
 }
 
+//If diceRoll is less than beat me Success CPU Is smart
 if (diceRoll < beatMe ){
-// CPU chooses
+console.log(( "CPU Is Smart" ) );    
+   
+    
+// CPU chooses best result 
+let emResultPower = Math.max(emStar,emHeart,emDefence)
+let emResultTwist = Math.max(emBlue,emOrange,emGreen)
 
+// find the best power
 if 
 (emStar = emResultPower )
 {
@@ -134,10 +148,10 @@ else if
 
 }
 
-// if the beat me is failed
+// if the beat me is failed CPU is Dumb
 else if (diceRoll > beatMe )
 {
-// CPU chooses
+// CPU chooses worst result
 let emResultPower = Math.min(emStar,emHeart,emDefence)
 let emResultTwist = Math.min(emBlue,emOrange,emGreen)
 if 
@@ -178,9 +192,7 @@ else if
     console.log(( {emTwist} ) );
 }
 
-//show me show me... lovely stats
-
-console.log(( "roll failed" ) );    
+console.log(( "CPU Is Dumb" ) );    
 }
 
 
@@ -295,6 +307,7 @@ console.log(( {emAttack} ) );
 console.log(( {dmgModel} ) );
 console.log(( {plHeart} ) );
 console.log(( {emHeart} ) );
+console.log(( {diceRoll} ) );
 
 
 }
