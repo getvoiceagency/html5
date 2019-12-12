@@ -121,16 +121,16 @@ var sound = new Howl({
 
 //card Anchors
 
-    card1.anchor.x = 0;
-    card1.anchor.y = 0;
-    card2.anchor.x = 0;
-    card2.anchor.y = 0;
+    card1.anchor.x = 0.5;
+    card1.anchor.y = 0.5;
+    card2.anchor.x = 0.5;
+    card2.anchor.y = 0.5;
 
 // move the sprite to the center of the canvas
-    card1.position.x = -1150;
-    card1.position.y = 150;
-    card2.position.x = 1500;
-    card2.position.y = 150;
+    card1.position.x = -650;
+    card1.position.y = 550;
+    card2.position.x = 1750;
+    card2.position.y = 250;
     
 //Card Alpha    
     card1.alpha = 0;
@@ -219,14 +219,14 @@ window.location = "index.html"
 /*global Power3*/
 
     var tl = new TimelineMax({})
-    .to(card1, 1, { pixi: { x: 825, y: 750,}, ease: Power3.easeInOut }, 0.9 )
+    .to(card1, 1, { pixi: { x: 1125, y: 750,}, ease: Power3.easeInOut }, 0.9 )
     .to(card1, 2, { pixi: {alpha: 1, delay:7.5,}, ease: Power3.easeInOut }, 0.5)
-    .to(card1, 3, { pixi: { x: 125, y: 150, scale: 0.5,}, ease: Power3.easeInOut }, 0.9)
+    .to(card1, 3, { pixi: { x: 325, y: 450, scale: 0.5,}, ease: Power3.easeInOut }, 0.9)
 
     var t2 = new TimelineMax({})
- .to(card2, 1, { pixi: { x: 825, y: 825,}, ease: Power3.easeInOut }, 0.9)
+ .to(card2, 1, { pixi: { x: -1525, y: 1825,}, ease: Power3.easeInOut }, 0.9)
    .to(card2, 2, { pixi: {alpha: 1, delay:7.5,}, ease: Power3.easeInOut }, 0.5)
-  .to(card2, 3, { pixi: { x: 775, y: 150, scale: 0.5 }, ease: Power3.easeInOut }, 0.9)
+  .to(card2, 3, { pixi: { x: 975, y: 450, scale: 0.5 }, ease: Power3.easeInOut }, 0.9)
     
     var t3 = new TimelineMax({ repeat: 0, delay: 1.5, yoyo: true })
     .to(vs, 4, { pixi: {alpha: 1, }}, 0.1);
@@ -256,7 +256,7 @@ document.getElementById("cpuLoose").addEventListener("click", function(){
     
 var plAttackAnim  = new TimelineMax({ })
      //.to(card1,duration 2, 2, { pixi: {x: 400, y: 150, scale: 0.5,}, ease: "plAttackEase", })
-     .to(card1, 2, { pixi: {x: 400, y: 150, scale: 0.5,}, ease:Power3.easeInOut  }, 0)
+     .to(card1, 2, { pixi: {x: 1125, y: 150, scale: 0.5,}, ease:Power3.easeInOut  }, 0)
      .call(PlayHitSound)
     .to(vs,    2, { pixi: {alpha: 0,}, ease: Power4.easeInOut }, 0.0)
     .call(particle)

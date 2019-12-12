@@ -1,0 +1,148 @@
+<html>
+    <head>
+        <title> </title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/pixi-particles-latest@3.2.0/dist/pixi-particles.min.js"></script>
+        
+    </head>
+     <style>
+@import url('https://fonts.googleapis.com/css?family=McLaren&display=swap');
+
+</style>
+    <body>
+   
+
+
+<script>
+
+
+/*global PIXI*/
+
+//Render the main view
+var renderer = PIXI.autoDetectRenderer(1280, 800,{});
+    document.body.appendChild(renderer.view);
+
+
+// Set the main container
+var mainStage = new PIXI.Container();
+//create a sub container for some items
+    var particleContainer = new PIXI.Container();
+ 
+   
+  mainStage.addChild(particleContainer);
+  particleContainer.x = 34;
+  particleContainer.y = 10;
+    
+
+        var emitter = new PIXI.particles.Emitter(
+
+
+
+			// See js/ParticleExample.js for actual setup
+		
+				// The image to use
+				["images/mc.png"],
+
+				// Emitter configuration, edit this to change the look
+				// of the emitter
+				{
+					"alpha": {
+						"start": 0.5,
+						"end": 0.5
+					},
+					"scale": {
+						"start": 1,
+						"end": 1
+					},
+					"color": {
+						"start": "ffffff",
+						"end": "ffffff"
+					},
+					"speed": {
+						"start": 3000,
+						"end": 3000
+					},
+					"startRotation": {
+						"min": 65,
+						"max": 65
+					},
+					"rotationSpeed": {
+						"min": 0,
+						"max": 0
+					},
+					"lifetime": {
+						"min": 0.81,
+						"max": 0.81
+					},
+					"blendMode": "normal",
+					"frequency": 0.004,
+					"emitterLifetime": 0,
+					"maxParticles": 1000,
+					"pos": {
+						"x": 0,
+						"y": 0
+					},
+					"addAtBack": false,
+					"spawnType": "rect",
+					"spawnRect": {
+						"x": -600,
+						"y": -460,
+						"w": 900,
+						"h": 20
+					}
+				});
+		
+		
+particleContainer.addChild(emitter);
+
+// Calculate the current time
+var elapsed = Date.now();
+
+// Update function every frame
+var update = function(){
+
+	// Update the next frame
+	requestAnimationFrame(update);
+
+	var now = Date.now();
+
+	// The emitter requires the elapsed
+	// number of seconds since the last update
+	emitter.update((now - elapsed) * 0.001);
+	elapsed = now;
+
+	// Should re-render the PIXI Stage
+//	 renderer.render(mainStage);
+};
+
+// Start emitting
+emitter.emit = true;
+
+
+// Start the update
+update();
+            
+    
+
+
+// start animating
+    animate();
+
+    function animate() {
+
+
+
+    requestAnimationFrame(animate);
+
+    // render the root container
+    renderer.render(mainStage);
+}
+
+</script>
+
+
+</body>
+
+    
+    
+</html>
